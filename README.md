@@ -1,1 +1,3 @@
 # SenlaCourses
+
+The first variant
