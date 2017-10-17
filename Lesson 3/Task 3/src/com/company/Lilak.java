@@ -1,18 +1,9 @@
 package com.company;
 
-public class Lilak extends AFlower implements IBoquetPart{
-    private Double length;
+public class Lilak extends AFlower implements IBouquetPart {
 
     public Lilak(Double price) {
         super(price);
-    }
-
-    public Double getLength() {
-        return length;
-    }
-
-    public void setLength(Double length) {
-        this.length = length;
     }
 
     @Override

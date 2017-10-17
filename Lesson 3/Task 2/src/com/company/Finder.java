@@ -1,13 +1,12 @@
 package com.company;
 
-public class Finder implements IFinder {
+public class Finder{
     private Number number;
 
     public Finder(){
         number = new Number();
     }
 
-    @Override
     public void findMaxNumeral() {
        number.setRandomValue();
        System.out.println("Random number is " + number.getValue().toString());

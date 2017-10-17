@@ -1,5 +1,5 @@
 package com.company;
 
 public interface IAssemblyBouquet {
-    public AFlower[] assemblyboquet(AFlower [] buquet);
+    public void assemblybouquet(AFlower [] flowers, AFlower flower);
 }

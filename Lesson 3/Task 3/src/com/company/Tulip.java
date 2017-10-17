@@ -1,18 +1,9 @@
 package com.company;
 
-public class Tulip extends AFlower implements IBoquetPart{
-    private Integer numOfPetals;
+public class Tulip extends AFlower implements IBouquetPart {
 
     public Tulip(Double price) {
         super(price);
-    }
-
-    public Integer getNumOfPetals() {
-        return numOfPetals;
-    }
-
-    public void setNumOfPetals(Integer numOfPetals) {
-        this.numOfPetals = numOfPetals;
     }
 
     @Override

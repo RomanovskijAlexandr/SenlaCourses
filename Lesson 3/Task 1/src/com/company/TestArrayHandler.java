@@ -1,6 +1,6 @@
 package com.company;
 
-public class TestArrayHandler implements ITestArrayHandler {
+public class TestArrayHandler{
 
     private  String[] strings;
     private ArrayHandler arrayHandler;
@@ -10,7 +10,6 @@ public class TestArrayHandler implements ITestArrayHandler {
         arrayHandler = new ArrayHandler();
     }
 
-    @Override
     public String[] setStrings(){
         strings[0] = "1";
         strings[1] = "0";
@@ -21,7 +20,6 @@ public class TestArrayHandler implements ITestArrayHandler {
         return strings;
     }
 
-    @Override
    public void checkArrayHandler(){
         setStrings();
        arrayHandler.parseArray(strings);
