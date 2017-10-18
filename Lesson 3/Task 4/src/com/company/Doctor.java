@@ -2,11 +2,9 @@ package com.company;
 
 public class Doctor extends APerson {
     private Patient[] patients;
-    static int countDoctors = 0;
 
-    public Doctor() {
-        this.patients = new Patient[3];
-        countDoctors++;
+    public Doctor(String name) {
+        setName(name);
         System.out.println("create doctor");
     }
 
@@ -14,9 +12,16 @@ public class Doctor extends APerson {
         return patients;
     }
 
-    public void setPatients(Patient[] patients) {
+    public void setPatients(Patient [] patients){
         this.patients = patients;
     }
+
+    public void setPatient(Patient patient) {
+        System.out.println("Patient with id: " + patient.getId() + " is registered to a doctor: " + this.getName());
+        if (new PlacesForPersons().checkPlacesForPerson(this.patients))
+            this.patients[new PlacesForPersons().getFreePosition(this.patients)] = patient;
+    }
+
 
     @Override
     public String toString() {

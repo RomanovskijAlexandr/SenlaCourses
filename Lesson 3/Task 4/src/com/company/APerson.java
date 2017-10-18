@@ -1,10 +1,11 @@
 package com.company;
 
-abstract class APerson {
+abstract class APerson{
     private String name;
+    protected String string;
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {

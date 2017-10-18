@@ -2,10 +2,9 @@ package com.company;
 
 public class Patient extends APerson {
     private String id;
-    static int countPatients = 0;
 
-    public Patient() {
-        countPatients++;
+    public Patient(String id) {
+        this.id = id;
         System.out.println("create patient");
     }
 
@@ -27,7 +26,7 @@ public class Patient extends APerson {
         if (getClass() != obj.getClass())
             truth = false;
         else {
-            if(this.getName() == ((Patient) obj).getName())
+            if(this.getId() == ((Patient) obj).getId())
                 truth = true;
             else
                 truth = false;
@@ -37,6 +36,6 @@ public class Patient extends APerson {
 
     @Override
     public String toString() {
-        return "Patient name is " + this.getName();
+        return "Patient id is: " + this.getId();
     }
 }
