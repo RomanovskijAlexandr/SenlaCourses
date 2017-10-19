@@ -2,29 +2,24 @@ package com.company;
 
 public class Main {
     public static void main(String[] args) {
-        int numFlowers = 5;
+        int numOfFlowers = 5;
 
-        Lilak lilak = (Lilak) new LilakBuildStep().createBoquetPart();
-        Rose rose = (Rose) new RoseBuildStep().createBoquetPart();
-        Tulip tulip = (Tulip) new TulipBuildStep().createBoquetPart();
-        Lilak lilak1 = (Lilak) new LilakBuildStep().createBoquetPart();
-        Rose rose1 = (Rose) new RoseBuildStep().createBoquetPart();
-        Tulip tulip1 = (Tulip) new TulipBuildStep().createBoquetPart();
+        Lilak lilak = new Lilak(3.54);
+        Rose rose = new Rose(4.26);
+        Tulip tulip = new Tulip(2.78);
+        Rose rose1 = new Rose(4.26);
+        Tulip tulip1 = new Tulip(2.78);
+        Bouquet bouquet = new Bouquet(numOfFlowers);
 
-        AFlower[] flowers = new AFlower[numFlowers];
-        AssemblyBouquet assemblyBouquet = new AssemblyBouquet();
-
-        assemblyBouquet.assemblybouquet(flowers, lilak);
-        assemblyBouquet.assemblybouquet(flowers, rose);
-        assemblyBouquet.assemblybouquet(flowers, tulip);
-        assemblyBouquet.assemblybouquet(flowers, lilak1);
-        assemblyBouquet.assemblybouquet(flowers, rose1);
+        bouquet.addFlowerInBouquet(lilak);
+        bouquet.addFlowerInBouquet(rose);
+        bouquet.addFlowerInBouquet(tulip);
+        bouquet.addFlowerInBouquet(rose1);
+        bouquet.addFlowerInBouquet(tulip1);
 
         //for check, if flowers more than places in bouquet
-        //assemblyBouquet.assemblybouquet(flowers, tulip1);
+        //bouquet.addFlowerInBouquet(tulip1);
 
-        Bouquet bouquet = new Bouquet();
-
-        bouquet.getPriceBouquet(flowers);
+        bouquet.getPriceBouquet();
     }
 }

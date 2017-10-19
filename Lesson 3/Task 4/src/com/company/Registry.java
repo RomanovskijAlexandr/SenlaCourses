@@ -3,11 +3,11 @@ package com.company;
 public class Registry implements IRegistry {
     private Patient[] patients;
 
-    public Registry(int n){
+    public Registry(int n) {
         this.patients = new Patient[n];
     }
 
-    public Patient[] getPatients(){
+    public Patient[] getPatients() {
         return this.patients;
     }
 
@@ -17,32 +17,33 @@ public class Registry implements IRegistry {
     }
 
     @Override
-    public void addNewPatient(Patient patient){
+    public void addNewPatient(Patient patient) {
         if (new PlacesForPersons().checkPlacesForPerson(patients))
             patients[new PlacesForPersons().getFreePosition(patients)] = patient;
     }
 
-   @Override
+    @Override
     public void removeOfDoctorPatients(Patient patient, Doctor doctor) {
         System.out.println("remove patient with id: " + patient.getId());
-        Patient[] patientsDoctor =doctor.getPatients();
-        for(int i = 0; i< patients.length; i++){
-            if(patients[i].equals(patient)){
-                patients[i]=null;
+        Patient[] patientsDoctor = doctor.getPatients();
+        for (int i = 0; i < patients.length; i++) {
+            if (patient == patients[i]) {
+                patients[i] = null;
             }
         }
         doctor.setPatients(patients);
     }
 
     @Override
-    public void getNumOfPatients(){
-        System.out.println("Registry has: " + patients.length + " patients");
+    public StringBuilder getNumOfPatients() {
+        StringBuilder stringBuilder = new StringBuilder();
+        return stringBuilder.append("Registry has: ").append(patients.length).append(" patients");
     }
 
-    public String toString() {
-        for (Patient patient:patients) {
+    @Override
+    public void printPatients() {
+        for (Patient patient : patients) {
             System.out.println(patient.toString());
         }
-        return "";
     }
 }

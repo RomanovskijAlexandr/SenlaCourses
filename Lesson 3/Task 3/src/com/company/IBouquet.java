@@ -1,5 +1,7 @@
 package com.company;
 
 public interface IBouquet {
-    public void getPriceBouquet(AFlower [] boquet);
+    public void getPriceBouquet();
+
+    public void addFlowerInBouquet(AFlower flower);
 }
