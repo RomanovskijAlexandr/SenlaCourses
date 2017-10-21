@@ -3,8 +3,9 @@ package com.company;
 public class Doctor extends APerson {
     private Patient[] patients;
 
-    public Doctor(String name) {
+    public Doctor(String name, int numOfDoctorPatients) {
         super(name);
+        this.patients = new Patient[numOfDoctorPatients];
         System.out.println("create doctor");
     }
 
@@ -12,16 +13,16 @@ public class Doctor extends APerson {
         return patients;
     }
 
-    public void setPatients(Patient[] patients) {
-        this.patients = patients;
+    public void setPatient(Patient patient, int position) {
+        this.patients[position] = patient;
     }
 
     public void setPatient(Patient patient) {
         StringBuilder stringBuilder = new StringBuilder();
         System.out.println(stringBuilder.append("Patient with id: ").append(patient.getId())
                 .append(" is registered to a doctor: ").append(this.getName()));
-        if (new PlacesForPersons().checkPlacesForPerson(this.patients))
-            this.patients[new PlacesForPersons().getFreePosition(this.patients)] = patient;
+        if (new ArrayHandler().checkArrayLength(this.patients))
+            this.patients[new ArrayHandler().getPosition(this.patients)] = patient;
     }
 
 

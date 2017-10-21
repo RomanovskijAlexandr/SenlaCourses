@@ -1,7 +1,7 @@
 package com.company;
 
 public interface IHospital {
-    public StringBuilder getNumOfDoctors();
+    public String getNumOfDoctors();
 
     public int getNumOfDoctorPatients(Doctor doctor);
 

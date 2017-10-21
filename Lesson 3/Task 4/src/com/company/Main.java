@@ -5,6 +5,7 @@ public class Main {
 
         int numOfPatients = 2;
         int numOfDoctrors = 2;
+        int numOfDoctorPatients = 2;
         Registry registry = new Registry(numOfPatients);
         Hospital hospital = new Hospital(numOfDoctrors);
 
@@ -13,20 +14,29 @@ public class Main {
         registry.addNewPatient(patient);
         registry.addNewPatient(patient1);
 
-        Doctor doctor = new Doctor("Doctor John");
-        Doctor doctor1 = new Doctor("Doctor Who");
+        Doctor doctor = new Doctor("Doctor John", 2);
+        Doctor doctor1 = new Doctor("Doctor Who", 2);
         hospital.addNewDoctor(doctor);
         hospital.addNewDoctor(doctor1);
 
-        HospitalInformation hospitalInformation = new HospitalInformation();
-        hospitalInformation.getHospitalInformation(hospital, registry);
+        new Main().getHospitalInformation(hospital, registry);
 
-        doctor.setPatients(registry.getPatients());
+        doctor.setPatient(patient);
+        doctor.setPatient(patient1);
         System.out.println(hospital.getNumOfDoctorPatients(doctor));
 
-        registry.removeOfDoctorPatients(patient, doctor);
+        registry.removeOfDoctorPatient(patient, doctor);
         System.out.println(hospital.getNumOfDoctorPatients(doctor));
 
         registry.addPatientsToDoctor(patient, doctor);
+    }
+
+    private void getHospitalInformation(Hospital hospital, Registry registry) {
+        System.out.println("Doctors in Hospital: ");
+        hospital.printDoctors();
+        System.out.println("Patients in registry: ");
+        registry.printPatients();
+        System.out.println(registry.getNumOfPatients());
+        System.out.println(hospital.getNumOfDoctors());
     }
 }

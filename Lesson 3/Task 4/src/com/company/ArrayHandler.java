@@ -1,7 +1,7 @@
 package com.company;
 
-public class PlacesForPersons {
-    public boolean checkPlacesForPerson(APerson[] persons) {
+public class ArrayHandler {
+    public boolean checkArrayLength(APerson[] persons) {
         boolean flag = false;
 
         for (APerson person : persons) {
@@ -16,7 +16,7 @@ public class PlacesForPersons {
         return flag;
     }
 
-    public int getFreePosition(APerson[] persons) {
+    public int getPosition(APerson[] persons) {
         int position = -1;
         for (int i = 0; i < persons.length; i++) {
             if (persons[i] == null) {

@@ -13,8 +13,8 @@ public class Hospital implements IHospital {
 
     @Override
     public void addNewDoctor(Doctor doctor) {
-        if (new PlacesForPersons().checkPlacesForPerson(doctors))
-            doctors[new PlacesForPersons().getFreePosition(doctors)] = doctor;
+        if (new ArrayHandler().checkArrayLength(doctors))
+            doctors[new ArrayHandler().getPosition(doctors)] = doctor;
     }
 
     @Override
@@ -30,9 +30,9 @@ public class Hospital implements IHospital {
     }
 
     @Override
-    public StringBuilder getNumOfDoctors() {
+    public String getNumOfDoctors() {
         StringBuilder stringBuilder = new StringBuilder();
-        return stringBuilder.append("Hospital has: ").append(doctors.length).append(" doctors");
+        return stringBuilder.toString();
     }
 
     @Override

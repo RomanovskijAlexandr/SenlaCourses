@@ -18,26 +18,24 @@ public class Registry implements IRegistry {
 
     @Override
     public void addNewPatient(Patient patient) {
-        if (new PlacesForPersons().checkPlacesForPerson(patients))
-            patients[new PlacesForPersons().getFreePosition(patients)] = patient;
+        if (new ArrayHandler().checkArrayLength(patients))
+            patients[new ArrayHandler().getPosition(patients)] = patient;
     }
 
     @Override
-    public void removeOfDoctorPatients(Patient patient, Doctor doctor) {
+    public void removeOfDoctorPatient(Patient patient, Doctor doctor) {
         System.out.println("remove patient with id: " + patient.getId());
-        Patient[] patientsDoctor = doctor.getPatients();
-        for (int i = 0; i < patients.length; i++) {
-            if (patient == patients[i]) {
-                patients[i] = null;
+        for (int i = 0; i < doctor.getPatients().length; i++) {
+            if (patient == doctor.getPatients()[i]) {
+                doctor.setPatient(null, i);
             }
         }
-        doctor.setPatients(patients);
     }
 
     @Override
-    public StringBuilder getNumOfPatients() {
+    public String getNumOfPatients() {
         StringBuilder stringBuilder = new StringBuilder();
-        return stringBuilder.append("Registry has: ").append(patients.length).append(" patients");
+        return stringBuilder.toString();
     }
 
     @Override
