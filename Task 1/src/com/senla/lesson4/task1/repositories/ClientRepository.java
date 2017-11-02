@@ -14,7 +14,6 @@ public class ClientRepository {
         clients = new TextHandler().getClients(new TextFileWorker("D:\\inputClients.txt").readFromFile());
     }
 
-
     public Client[] getClients() {
         return clients;
     }

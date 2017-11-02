@@ -21,18 +21,6 @@ public class ClientService implements IClientService {
     }
 
     @Override
-    public void sortClientsByName() {
-
-        Arrays.sort(clientRepository.getClients(), new ClientComporators().getNameComparator());
-    }
-
-    @Override
-    public Client[] sortClientsByDateEviction() {
-        Arrays.sort(clientRepository.getClients(), new ClientComporators().getDateComparator());
-        return clientRepository.getClients();
-    }
-
-    @Override
     public int getPriceForRoom(int clientId) {
         int price = (int) ((clientRepository.findById(clientId).getRoom().getDateOfSettle().getTime() -
                 clientRepository.findById(clientId).getRoom().getDateEviction().getTime()) / (86400000))
@@ -41,9 +29,10 @@ public class ClientService implements IClientService {
     }
 
     @Override
-    public Client[] getLastThreeClients() {
+    public Client[] getLastThreeClients() throws ParseException {
         Client[] clients1 = new Client[3];
-        Client[] clients = sortClientsByDateEviction();
+        Arrays.sort(clientRepository.getClients(), new ClientComporators().getDateComparator());
+        Client[] clients = clientRepository.getClients();
         clients1[0] = clients[clients.length - 3];
         clients1[1] = clients[clients.length - 2];
         clients1[2] = clients[clients.length - 1];

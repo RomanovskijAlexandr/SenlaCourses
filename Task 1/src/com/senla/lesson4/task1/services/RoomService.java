@@ -1,13 +1,11 @@
 package com.senla.lesson4.task1.services;
 
-import com.senla.lesson4.task1.comparators.RoomComporators;
 import com.senla.lesson4.task1.entities.Opportunity;
 import com.senla.lesson4.task1.entities.Room;
 import com.senla.lesson4.task1.interfaces.IRoomService;
 import com.senla.lesson4.task1.repositories.RoomRepository;
 
 import java.text.ParseException;
-import java.util.Arrays;
 import java.util.Date;
 
 public class RoomService implements IRoomService {
@@ -30,21 +28,6 @@ public class RoomService implements IRoomService {
             }
         }
         return count;
-    }
-
-    @Override
-    public void sortRoomsByPrice() {
-        Arrays.sort(roomRepository.getRooms(), new RoomComporators().getPriceComparator());
-    }
-
-    @Override
-    public void sortRoomsByCapacity() {
-        Arrays.sort(roomRepository.getRooms(), new RoomComporators().getCapacityComparator());
-    }
-
-    @Override
-    public void sortRoomsByStars() {
-        Arrays.sort(roomRepository.getRooms(), new RoomComporators().getStarsComparator());
     }
 
     @Override

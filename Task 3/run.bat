@@ -1,2 +1,2 @@
-set CLASSPATH=D:\textfileWorker.jar
-java -jar program.jar D:\inputClients.txt D:\inputRooms.txt D:\inputOpportunities.txt D:\output.txt
+java -jar Hotel.jar D:\inputClients.txt D:\inputRooms.txt D:\inputOpportunities.txt D:\output.txt
+Pause

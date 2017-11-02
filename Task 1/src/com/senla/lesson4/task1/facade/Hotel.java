@@ -1,14 +1,17 @@
 package com.senla.lesson4.task1.facade;
 
-import com.senla.lesson4.task1.entities.Client;
-import com.senla.lesson4.task1.entities.Opportunity;
-import com.senla.lesson4.task1.entities.Room;
+import com.senla.lesson4.task1.comparators.ClientComporators;
+import com.senla.lesson4.task1.comparators.OpportunityComparators;
+import com.senla.lesson4.task1.comparators.RoomComporators;
+import com.senla.lesson4.task1.entities.Entity;
+import com.senla.lesson4.task1.handlers.ArrayHandler;
 import com.senla.lesson4.task1.handlers.TextHandler;
 import com.senla.lesson4.task1.services.ClientService;
 import com.senla.lesson4.task1.services.OpportunityService;
 import com.senla.lesson4.task1.services.RoomService;
 
 import java.text.ParseException;
+import java.util.Arrays;
 
 public class Hotel {
     private ClientService clientService;
@@ -19,71 +22,64 @@ public class Hotel {
 
     private TextHandler textHandler;
 
+    ArrayHandler arrayHandler;
+
     public Hotel() throws ParseException {
         clientService = new ClientService();
         roomService = new RoomService();
         opportunityService = new OpportunityService();
         textHandler = new TextHandler();
+        arrayHandler = new ArrayHandler();
     }
 
-    public void workWithClientEntities() throws ParseException {
-        clientService.settleClientInRoom(0, roomService.getRoomRepository().getRooms()[0]);
-        clientService.settleClientInRoom(1, roomService.getRoomRepository().getRooms()[1]);
-        clientService.settleClientInRoom(2, roomService.getRoomRepository().getRooms()[2]);
-        clientService.sortClientsByDateEviction();
-        printClients(clientService.getClientRepository().getClients());
-        printClients(clientService.getLastThreeClients());
-        System.out.println(clientService.getPriceForRoom(0));
-        textHandler.writeEntitiesToFile(clientService.getClientRepository().getClients());
+    public ClientService getClientService() {
+        return clientService;
     }
 
-    public void workWithRoomEntities() {
-        System.out.println(roomService.getRoomDetails(1).toString());
-        roomService.sortRoomsByCapacity();
-        printRoom(roomService.getRoomRepository().getRooms());
-        roomService.sortRoomsByPrice();
-        printRoom(roomService.getRoomRepository().getRooms());
-        roomService.changeRoomPrice(0, 234);
-        printRoom(roomService.getRoomRepository().getRooms());
+    public RoomService getRoomService() {
+        return roomService;
     }
 
-    public void workWithOpportunityEntities() {
-        opportunityService.sortOpportunitiesByPrice();
-        printOpportunity(opportunityService.getOpportunityRepository().getOpportunities());
-        opportunityService.changeOpportunitiesPrice(0, 122);
-        printOpportunity(opportunityService.getOpportunityRepository().getOpportunities());
+    public OpportunityService getOpportunityService() {
+        return opportunityService;
     }
 
-    private void printClients(Client[] clients) {
-        StringBuilder[] sb = new StringBuilder[clients.length];
-        for (int i = 0; i < clients.length; i++) {
-            sb[i] = new StringBuilder(clients[i].toString());
+    public void sortClientsByName() {
+        Arrays.sort(clientService.getClientRepository().getClients(), new ClientComporators().getNameComparator());
+    }
+
+    public void sortClientsByDateEviction() {
+        Arrays.sort(clientService.getClientRepository().getClients(), new ClientComporators().getDateComparator());
+    }
+
+    public void sortOpportunitiesByPrice() {
+        Arrays.sort(opportunityService.getOpportunityRepository().getOpportunities(), new OpportunityComparators().getOpportunityByPriceComparator());
+    }
+
+    public void sortRoomsByPrice() {
+        Arrays.sort(roomService.getRoomRepository().getRooms(), new RoomComporators().getPriceComparator());
+    }
+
+    public void sortRoomsByCapacity() {
+        Arrays.sort(roomService.getRoomRepository().getRooms(), new RoomComporators().getCapacityComparator());
+    }
+
+    public void sortRoomsByStars() {
+        Arrays.sort(roomService.getRoomRepository().getRooms(), new RoomComporators().getStarsComparator());
+    }
+
+    public void printEntities(Entity[] entities){
+        StringBuilder[] sb = new StringBuilder[entities.length];
+        for (int i = 0; i < entities.length; i++) {
+            sb[i] = new StringBuilder(entities[i].toString());
         }
-        for (int i = 0; i < clients.length; i++) {
+        for (int i = 0; i < entities.length; i++) {
             System.out.println(sb[i].toString());
         }
         System.out.println("\n");
     }
 
-    private void printOpportunity(Opportunity[] opportunities) {
-        StringBuilder[] sb = new StringBuilder[opportunities.length];
-        for (int i = 0; i < opportunities.length; i++) {
-            sb[i] = new StringBuilder(opportunities[i].toString());
-        }
-        for (int i = 0; i < opportunities.length; i++) {
-            System.out.println(sb[i].toString());
-        }
-        System.out.println("\n");
-    }
-
-    private void printRoom(Room[] rooms) {
-        StringBuilder[] sb = new StringBuilder[rooms.length];
-        for (int i = 0; i < rooms.length; i++) {
-            sb[i] = new StringBuilder(rooms[i].toString());
-        }
-        for (int i = 0; i < rooms.length; i++) {
-            System.out.println(sb[i].toString());
-        }
-        System.out.println("\n");
+    public TextHandler getTextHandler() {
+        return textHandler;
     }
 }

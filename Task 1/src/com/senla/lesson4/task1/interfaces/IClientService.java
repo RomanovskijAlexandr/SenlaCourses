@@ -4,15 +4,13 @@ import com.senla.lesson4.task1.entities.Client;
 import com.senla.lesson4.task1.entities.Opportunity;
 import com.senla.lesson4.task1.entities.Room;
 
+import java.text.ParseException;
+
 public interface IClientService {
-
-    public void sortClientsByName();
-
-    public Client[] sortClientsByDateEviction();
 
     public int getPriceForRoom(int clientId);
 
-    public Client[] getLastThreeClients();
+    public Client[] getLastThreeClients() throws ParseException;
 
     public Opportunity[] getClientOpportunities(int clientId);
 

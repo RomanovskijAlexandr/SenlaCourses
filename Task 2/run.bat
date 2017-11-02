@@ -1,2 +1,2 @@
-set CLASSPATH=D:\textfileWorker.jar
-java -jar program.jar
+java -jar Hotel.jar
+Pause

@@ -9,12 +9,6 @@ public interface IRoomService {
 
     public int numOfFreeRooms();
 
-    public void sortRoomsByPrice();
-
-    public void sortRoomsByCapacity();
-
-    public void sortRoomsByStars();
-
     public Room[] getFreeRooms();
 
     public Room[] getFreeRoomsOnDate(Date date);
