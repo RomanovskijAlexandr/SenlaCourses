@@ -44,11 +44,15 @@ public class Hotel {
         return opportunityService;
     }
 
+    public TextHandler getTextHandler() {
+        return textHandler;
+    }
+
     public void sortClientsByName() {
         Arrays.sort(clientService.getClientRepository().getClients(), new ClientComporators().getNameComparator());
     }
 
-    public void sortClientsByDateEviction() {
+    public void sortClientsByDate() {
         Arrays.sort(clientService.getClientRepository().getClients(), new ClientComporators().getDateComparator());
     }
 
@@ -79,7 +83,5 @@ public class Hotel {
         System.out.println("\n");
     }
 
-    public TextHandler getTextHandler() {
-        return textHandler;
-    }
+
 }

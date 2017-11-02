@@ -1,7 +1,6 @@
 package com.senla.lesson4.task1;
 
 import com.senla.lesson4.task1.facade.Hotel;
-import com.senla.lesson4.task1.handlers.TextHandler;
 
 import java.text.ParseException;
 
@@ -13,7 +12,7 @@ public class Application {
         hotel.getClientService().settleClientInRoom(0, hotel.getRoomService().getRoomRepository().getRooms()[0]);
         hotel.getClientService().settleClientInRoom(1, hotel.getRoomService().getRoomRepository().getRooms()[1]);
         hotel.getClientService().settleClientInRoom(2, hotel.getRoomService().getRoomRepository().getRooms()[2]);
-        hotel.sortClientsByDateEviction();
+        hotel.sortClientsByDate();
         hotel.printEntities(hotel.getClientService().getClientRepository().getClients());
         hotel.printEntities(hotel.getClientService().getLastThreeClients());
         System.out.println(hotel.getClientService().getPriceForRoom(0));
