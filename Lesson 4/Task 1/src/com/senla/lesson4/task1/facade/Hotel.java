@@ -75,7 +75,8 @@ public class Hotel {
     public void printEntities(Entity[] entities){
         StringBuilder[] sb = new StringBuilder[entities.length];
         for (int i = 0; i < entities.length; i++) {
-            sb[i] = new StringBuilder(entities[i].toString());
+            if(entities[i]!=null)
+                sb[i] = new StringBuilder(entities[i].toString());
         }
         for (int i = 0; i < entities.length; i++) {
             System.out.println(sb[i].toString());

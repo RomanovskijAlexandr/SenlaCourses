@@ -12,8 +12,7 @@ public class ArrayHandler {
                 flag = true;
         }
         if (!flag) {
-            System.out.println("Hotel don't have free places");
-            System.exit(0);
+            resizeArray(entities);
         }
         return flag;
     }
@@ -30,7 +29,7 @@ public class ArrayHandler {
     }
 
     public Entity[] resizeArray(Entity[] entities) {
-        Entity[] entitiesResize = Arrays.copyOf(entities, entities.length + 100);
+        Entity[] entitiesResize = Arrays.copyOf(entities, entities.length + 1);
         return entitiesResize;
     }
 }

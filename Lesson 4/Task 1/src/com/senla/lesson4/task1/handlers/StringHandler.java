@@ -58,7 +58,7 @@ public class StringHandler {
         return opportunity;
     }
 
-    private Date parseDate(String date, String format) throws ParseException {
+    public Date parseDate(String date, String format) throws ParseException {
         SimpleDateFormat formatter = new SimpleDateFormat(format);
         return formatter.parse(date);
     }

@@ -1,6 +1,8 @@
 package com.senla.lesson4.task1;
 
 import com.senla.lesson4.task1.facade.Hotel;
+import com.senla.lesson4.task1.handlers.ArrayHandler;
+import com.senla.lesson4.task1.repositories.InitData;
 
 import java.text.ParseException;
 
@@ -8,6 +10,7 @@ public class Application {
 
     public static void main(String[] args) throws ParseException {
         Hotel hotel = new Hotel();
+        new InitData().generateData(hotel.getClientService().getClientRepository(), hotel.getRoomService().getRoomRepository(), hotel.getOpportunityService().getOpportunityRepository());
 
         hotel.getClientService().settleClientInRoom(0, hotel.getRoomService().getRoomRepository().getRooms()[0]);
         hotel.getClientService().settleClientInRoom(1, hotel.getRoomService().getRoomRepository().getRooms()[1]);
