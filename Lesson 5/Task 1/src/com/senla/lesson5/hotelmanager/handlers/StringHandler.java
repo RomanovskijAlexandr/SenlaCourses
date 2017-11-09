@@ -1,8 +1,8 @@
-package com.senla.lesson5.task1.handlers;
+package com.senla.lesson5.hotelmanager.handlers;
 
-import com.senla.lesson5.task1.entities.Client;
-import com.senla.lesson5.task1.entities.Opportunity;
-import com.senla.lesson5.task1.entities.Room;
+import com.senla.lesson5.hotelmanager.entities.Client;
+import com.senla.lesson5.hotelmanager.entities.Opportunity;
+import com.senla.lesson5.hotelmanager.entities.Room;
 import org.apache.log4j.Logger;
 
 import java.text.DateFormat;

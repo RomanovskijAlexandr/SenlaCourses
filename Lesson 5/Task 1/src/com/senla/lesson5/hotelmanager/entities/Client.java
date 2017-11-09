@@ -1,9 +1,10 @@
-package com.senla.lesson5.task1.entities;
+package com.senla.lesson5.hotelmanager.entities;
+
+import static com.senla.lesson5.hotelmanager.repositories.ClientRepository.lastIdClient;
 
 public class Client extends Entity {
     private String name;
     private Room room;
-    public static int lastIdClient = 0;
 
     public Client(String name) {
         this.name = name;

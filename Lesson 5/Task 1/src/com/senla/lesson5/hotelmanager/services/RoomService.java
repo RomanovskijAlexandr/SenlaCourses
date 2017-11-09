@@ -1,10 +1,11 @@
-package com.senla.lesson5.task1.services;
+package com.senla.lesson5.hotelmanager.services;
 
-import com.senla.lesson5.task1.entities.Opportunity;
-import com.senla.lesson5.task1.entities.Room;
-import com.senla.lesson5.task1.interfaces.IRoomService;
-import com.senla.lesson5.task1.repositories.RoomRepository;
+import com.senla.lesson5.hotelmanager.entities.Opportunity;
+import com.senla.lesson5.hotelmanager.entities.Room;
+import com.senla.lesson5.hotelmanager.iservices.IRoomService;
+import com.senla.lesson5.hotelmanager.repositories.RoomRepository;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class RoomService implements IRoomService {
@@ -30,12 +31,12 @@ public class RoomService implements IRoomService {
     }
 
     @Override
-    public Room[] getFreeRooms() {
-        Room[] roomsFree = new Room[numOfFreeRooms()];
-        for (int i = 0; i < roomRepository.getRooms().length; i++) {
-            if (roomRepository.getRooms()[i].getFree()) {
-                for (int j = 0; j < roomsFree.length; j++) {
-                    roomsFree[j] = roomRepository.getRooms()[i];
+    public ArrayList<Room> getFreeRooms() {
+        ArrayList<Room> roomsFree = new ArrayList<>();
+        for (int i = 0; i < roomRepository.getRooms().size(); i++) {
+            if (roomRepository.getRooms().get(i).getFree()) {
+                for (int j = 0; j < roomsFree.size(); j++) {
+                    roomsFree.set(j, roomRepository.getRooms().get(i));
                 }
             }
         }
@@ -43,18 +44,18 @@ public class RoomService implements IRoomService {
     }
 
     @Override
-    public Room[] getFreeRoomsOnDate(Date date) {
+    public ArrayList<Room> getFreeRoomsOnDate(Date date) {
         int count = 0;
         for (Room room : roomRepository.getRooms()) {
             if (date.getTime() >= room.getDateEviction().getTime()) {
                 count++;
             }
         }
-        Room[] freeRooms = new Room[count];
-        for (int i = 0; i < roomRepository.getRooms().length; i++) {
-            if (date.getTime() >= roomRepository.getRooms()[i].getDateEviction().getTime()) {
+        ArrayList<Room> freeRooms = new ArrayList<>();
+        for (int i = 0; i < roomRepository.getRooms().size(); i++) {
+            if (date.getTime() >= roomRepository.getRooms().get(i).getDateEviction().getTime()) {
                 for (int j = 0; j < count; j++) {
-                    freeRooms[j] = roomRepository.getRooms()[i];
+                    freeRooms.set(j, roomRepository.getRooms().get(i));
                 }
             }
         }
@@ -79,5 +80,18 @@ public class RoomService implements IRoomService {
     @Override
     public void addOpportunity(int roomId, Opportunity opportunity) {
         roomRepository.findById(roomId).setOpportunity(opportunity);
+    }
+
+    @Override
+    public void printRooms(ArrayList<Room> rooms) {
+        StringBuilder[] sb = new StringBuilder[rooms.size()];
+        for (int i = 0; i < rooms.size(); i++) {
+            if (rooms.get(i) != null)
+                sb[i] = new StringBuilder(rooms.get(i).toString());
+        }
+        for (int i = 0; i < rooms.size(); i++) {
+            System.out.println(sb[i].toString());
+        }
+        System.out.println("\n");
     }
 }

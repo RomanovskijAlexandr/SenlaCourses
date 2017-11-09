@@ -1,9 +1,11 @@
-package com.senla.lesson5.task1.entities;
-
-import com.senla.lesson5.task1.handlers.ArrayHandler;
+package com.senla.lesson5.hotelmanager.entities;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import static com.senla.lesson5.hotelmanager.repositories.RoomRepository.lastIdRoom;
 
 public class Room extends Entity {
     private Integer number;
@@ -14,24 +16,23 @@ public class Room extends Entity {
     private Integer numOfStars;
     private Date dateEviction;
     private Date dateOfSettle;
-    private Opportunity[] opportunities;
-    static int lasdIdRoom = 0;
+    private ArrayList<Opportunity> opportunities;
 
-    public Room(Integer number, Integer price, Integer capacity, Integer numOfStars, Date dateEviction, Date dateOfSettle, int numOfOpportunities) {
+    public Room(Integer number, Integer price, Integer capacity, Integer numOfStars, Date dateEviction, Date dateOfSettle) {
         this.number = number;
         this.price = price;
         this.capacity = capacity;
         this.numOfStars = numOfStars;
         this.dateEviction = dateEviction;
         this.dateOfSettle = dateOfSettle;
-        opportunities = new Opportunity[numOfOpportunities];
-        setId(generateId(lasdIdRoom));
-        lasdIdRoom++;
+        opportunities = new ArrayList<>();
+        setId(generateId(lastIdRoom));
+        lastIdRoom++;
     }
 
     public Room() {
-        setId(generateId(lasdIdRoom));
-        lasdIdRoom++;
+        setId(generateId(lastIdRoom));
+        lastIdRoom++;
     }
 
     public Integer getNumber() {
@@ -98,13 +99,12 @@ public class Room extends Entity {
         this.dateOfSettle = dateOfSettle;
     }
 
-    public Opportunity[] getOpportunities() {
+    public ArrayList<Opportunity> getOpportunities() {
         return opportunities;
     }
 
     public void setOpportunity(Opportunity opportunity) {
-        new ArrayHandler().checkArrayForNewElement(this.opportunities);
-        this.opportunities[new ArrayHandler().getPosition(this.opportunities)] = opportunity;
+        this.opportunities.add(opportunity);
     }
 
     @Override

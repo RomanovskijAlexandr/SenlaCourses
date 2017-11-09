@@ -1,4 +1,4 @@
-package com.senla.lesson5.task1.entities;
+package com.senla.lesson5.hotelmanager.entities;
 
 public abstract class Entity {
     private int id;

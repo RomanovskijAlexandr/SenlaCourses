@@ -1,20 +1,21 @@
-package com.senla.lesson5.task1.entities;
+package com.senla.lesson5.hotelmanager.entities;
+
+import static com.senla.lesson5.hotelmanager.repositories.OpportunityRepository.lastIdOpportunities;
 
 public class Opportunity extends Entity {
     private String name;
     private Integer price;
-    static int lastIdOpp = 0;
 
     public Opportunity(String name, Integer price) {
         this.name = name;
         this.price = price;
-        setId(generateId(lastIdOpp));
-        lastIdOpp++;
+        setId(generateId(lastIdOpportunities));
+        lastIdOpportunities++;
     }
 
     public Opportunity() {
-        setId(generateId(lastIdOpp));
-        lastIdOpp++;
+        setId(generateId(lastIdOpportunities));
+        lastIdOpportunities++;
     }
 
     public String getName() {
