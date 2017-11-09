@@ -15,6 +15,7 @@ import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 
 public class Hotel {
     private ClientService clientService;
@@ -76,7 +77,7 @@ public class Hotel {
         return clientService.getPriceForRoom(client.getId());
     }
 
-    public ArrayList<Client> getLastClients() {
+    public ArrayList<Client> getLastThreeClients() {
         return clientService.getLastThreeClients();
     }
 
@@ -92,6 +93,10 @@ public class Hotel {
         clientService.settleClientInRoom(client.getId(), room);
     }
 
+    public void printClients(ArrayList<Client> clients) {
+        clientService.printClients(clients);
+    }
+
     //Opportunity service
 
     public void changeOpportunitiesPrice(Opportunity opportunity, Integer price) {
@@ -102,7 +107,23 @@ public class Hotel {
         Collections.sort(opportunityService.getOpportunityRepository().getOpportunities(), new OpportunityComparators().getOpportunityByPriceComparator());
     }
 
+    public void printOpportunities(ArrayList<Opportunity> opportunities) {
+        opportunityService.printOpportunities(opportunities);
+    }
+
     //Room Service
+
+    public int numOfFreeRooms() {
+        return roomService.numOfFreeRooms();
+    }
+
+    public ArrayList<Room> getFreeRooms() {
+        return roomService.getFreeRooms();
+    }
+
+    public ArrayList<Room> getFreeRoomsOnDate(Date date) {
+        return roomService.getFreeRoomsOnDate(date);
+    }
 
     public String getRoomDetails(Room room) {
         return roomService.getRoomDetails(room.getId());
@@ -130,5 +151,9 @@ public class Hotel {
 
     public void sortRoomsByStars() {
         Collections.sort(roomService.getRoomRepository().getRooms(), new RoomComporators().getStarsComparator());
+    }
+
+    public void printRooms(ArrayList<Room> rooms) {
+        roomService.printRooms(rooms);
     }
 }

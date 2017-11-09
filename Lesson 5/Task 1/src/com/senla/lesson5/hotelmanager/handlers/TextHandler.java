@@ -54,6 +54,5 @@ public class TextHandler {
             strings[i] = entities.get(i).getStringForPrintInFile();
         }
         textFileWorker.writeToFile(strings);
-
     }
 }
