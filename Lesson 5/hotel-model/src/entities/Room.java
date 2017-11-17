@@ -1,14 +1,10 @@
 package entities;
 
-import api.IRoom;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import static repositories.RoomRepository.lastIdRoom;
-
-public class Room extends Entity implements IRoom{
+public class Room extends Entity implements IRoom {
     private Integer number;
     private Integer price;
     private Boolean free = true;
@@ -27,13 +23,9 @@ public class Room extends Entity implements IRoom{
         this.dateEviction = dateEviction;
         this.dateOfSettle = dateOfSettle;
         opportunities = new ArrayList<>();
-        setId(generateId(lastIdRoom));
-        lastIdRoom++;
     }
 
     public Room() {
-        setId(generateId(lastIdRoom));
-        lastIdRoom++;
     }
 
     public Integer getNumber() {

@@ -1,22 +1,14 @@
 package entities;
 
-import api.IClient;
-
-import static repositories.ClientRepository.lastIdClient;
-
 public class Client extends Entity implements IClient {
     private String name;
     private Room room;
 
     public Client(String name) {
         this.name = name;
-        setId(generateId(lastIdClient));
-        lastIdClient++;
     }
 
     public Client() {
-        setId(generateId(lastIdClient));
-        lastIdClient++;
     }
 
     public String getName() {

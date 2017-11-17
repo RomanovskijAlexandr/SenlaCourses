@@ -1,13 +1,14 @@
 package actions.rooms;
 
-import api.IAction;
+import action.IAction;
 import facade.Hotel;
+import printer.Printer;
 
 public class ShowFreeRoomsAction implements IAction {
     @Override
     public void execute() {
         Hotel hotel = Hotel.getInstance();
-        hotel.printEntities(hotel.getFreeRooms());
+        Printer.printEntities(hotel.getFreeRooms());
         System.out.println("Success");
     }
 }

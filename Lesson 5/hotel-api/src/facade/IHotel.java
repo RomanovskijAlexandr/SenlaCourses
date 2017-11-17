@@ -1,11 +1,11 @@
-package api;
+package facade;
 
 import entities.Client;
 import entities.Opportunity;
 import entities.Room;
 
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public interface IHotel {
     public void createClient(String name);
@@ -16,13 +16,13 @@ public interface IHotel {
 
     public int getPriceForRoom(Client client);
 
-    public ArrayList<Client> getLastThreeClients();
+    public List<Client> getLastThreeClients(Integer roomId);
 
-    public ArrayList<Opportunity> getClientOpportunities(Client client);
+    public List<Opportunity> getClientOpportunities(Client client);
 
     public void moveOutClientFromRoom(Integer clientId);
 
-    public void settleClientInRoom(Integer idClient, Integer idRoom);
+    public void settleClientInRoom(Integer idClient, Integer idRoom, Date dateEviction, Date dateOfSettle);
 
     //Opportunity service
 
@@ -38,9 +38,9 @@ public interface IHotel {
 
     public int numOfFreeRooms();
 
-    public ArrayList<Room> getFreeRooms();
+    public List<Room> getFreeRooms();
 
-    public ArrayList<Room> getFreeRoomsOnDate(Date date);
+    public List<Room> getFreeRoomsOnDate(Date date);
 
     public String getRoomDetails(Integer roomId);
 
@@ -57,4 +57,6 @@ public interface IHotel {
     public void sortRoomsByStars();
 
     public void saveEntities();
+
+    public void changePaths(String clientPath, String roomPath, String opportunityPath, String roomHidtoryPath);
 }

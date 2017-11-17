@@ -1,10 +1,14 @@
-package api;
+package repository;
 
 import entities.Entity;
 
 import java.util.List;
 
 public interface IRepository {
+    public void setPath(String path);
+
+    public String getPath();
+
     public Entity findById(int id);
 
     public List<? extends Entity> findAll();

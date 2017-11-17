@@ -1,6 +1,6 @@
 package menus;
 
-import api.IAction;
+import action.IAction;
 
 public class MenuItem {
     private String title;

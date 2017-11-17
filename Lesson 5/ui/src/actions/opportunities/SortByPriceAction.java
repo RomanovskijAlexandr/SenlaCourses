@@ -1,6 +1,6 @@
 package actions.opportunities;
 
-import api.IAction;
+import action.IAction;
 import facade.Hotel;
 
 public class SortByPriceAction implements IAction {

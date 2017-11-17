@@ -1,4 +1,4 @@
-package api;
+package action;
 
 public interface IAction {
     public void execute();

@@ -7,6 +7,7 @@ import actions.opportunities.ChangePriceAction;
 import actions.opportunities.CreateOpportunityAction;
 import actions.opportunities.PrintOpportunitiesAction;
 import actions.opportunities.SortByPriceAction;
+import actions.paths.ChangePathAction;
 import actions.rooms.*;
 import menus.Menu;
 import menus.MenuItem;
@@ -17,9 +18,13 @@ import java.util.List;
 public class Builder {
     private Menu rootMenu;
 
+    public Builder() {
+        this.rootMenu = new Menu();
+    }
+
     public Menu buildMenu() {
-        Menu mainMenu = new Menu();
-        mainMenu.setName("main menu");
+        this.rootMenu = new Menu();
+        this.rootMenu.setName("main menu");
         List<MenuItem> mainMenuItems = new ArrayList<>();
 
         MenuItem clientItem = new MenuItem();
@@ -34,6 +39,10 @@ public class Builder {
         opportunityItem.setTitle(" Opportunities");
         opportunityItem.setNextMenu(buildOpportunityMenu());
 
+        MenuItem path = new MenuItem();
+        path.setTitle(" Set entity's path to file");
+        path.setAction(new ChangePathAction());
+
         MenuItem exitItem = new MenuItem();
         exitItem.setTitle(" Exit");
         exitItem.setAction(new ExitAction());
@@ -41,14 +50,15 @@ public class Builder {
         mainMenuItems.add(clientItem);
         mainMenuItems.add(roomItem);
         mainMenuItems.add(opportunityItem);
+        mainMenuItems.add(path);
         mainMenuItems.add(exitItem);
 
-        mainMenu.setMenuItems(mainMenuItems);
+        this.rootMenu.setMenuItems(mainMenuItems);
 
-        return mainMenu;
+        return this.rootMenu;
     }
 
-    public Menu buildClientMenu() {
+    private Menu buildClientMenu() {
         Menu clientMenu = new Menu();
         clientMenu.setName("client menu");
         List<MenuItem> clientMenuItems = new ArrayList<>();
@@ -60,10 +70,6 @@ public class Builder {
         MenuItem printerClient = new MenuItem();
         printerClient.setTitle(" Print clients");
         printerClient.setAction(new PrintClientsAction());
-
-        MenuItem threeLastClients = new MenuItem();
-        threeLastClients.setTitle(" Get last three clients");
-        threeLastClients.setAction(new LastClientAction());
 
         MenuItem opportunityClient = new MenuItem();
         opportunityClient.setTitle(" Get client's opportunities");
@@ -91,7 +97,6 @@ public class Builder {
 
         clientMenuItems.add(newClient);
         clientMenuItems.add(printerClient);
-        clientMenuItems.add(threeLastClients);
         clientMenuItems.add(opportunityClient);
         clientMenuItems.add(settleClient);
         clientMenuItems.add(moveOutClient);
@@ -104,7 +109,7 @@ public class Builder {
         return clientMenu;
     }
 
-    public Menu buildRoomMenu() {
+    private Menu buildRoomMenu() {
         Menu roomMenu = new Menu();
         List<MenuItem> roomMenuItems = new ArrayList<>();
 
@@ -115,6 +120,10 @@ public class Builder {
         MenuItem printerRoom = new MenuItem();
         printerRoom.setTitle(" Print rooms");
         printerRoom.setAction(new PrintRoomsAction());
+
+        MenuItem threeLastClients = new MenuItem();
+        threeLastClients.setTitle(" Get last three clients");
+        threeLastClients.setAction(new LastRoomClientsAction());
 
         MenuItem showFreeRooms = new MenuItem();
         showFreeRooms.setTitle(" Show free rooms");
@@ -157,6 +166,7 @@ public class Builder {
         roomMenuItems.add(showFreeRooms);
         roomMenuItems.add(roomDetails);
         roomMenuItems.add(repairStatus);
+        roomMenuItems.add(threeLastClients);
         roomMenuItems.add(priceRoom);
         roomMenuItems.add(newOpportunity);
         roomMenuItems.add(sorterByPrice);
@@ -169,7 +179,7 @@ public class Builder {
         return roomMenu;
     }
 
-    public Menu buildOpportunityMenu() {
+    private Menu buildOpportunityMenu() {
         Menu opportunityMenu = new Menu();
         List<MenuItem> opportunityMenuItems = new ArrayList<>();
 

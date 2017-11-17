@@ -1,6 +1,6 @@
 package actions.clients;
 
-import api.IAction;
+import action.IAction;
 import facade.Hotel;
 
 public class SortDateAction implements IAction {

@@ -1,13 +1,14 @@
 package actions.clients;
 
-import api.IAction;
+import action.IAction;
 import facade.Hotel;
+import printer.Printer;
 
 public class PrintClientsAction implements IAction {
     @Override
     public void execute() {
         Hotel hotel = Hotel.getInstance();
-        hotel.printEntities(hotel.getClientService().findAll());
+        Printer.printEntities(hotel.getClientService().findAll());
         System.out.println("Success");
     }
 }

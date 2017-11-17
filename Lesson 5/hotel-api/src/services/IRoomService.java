@@ -1,19 +1,19 @@
-package api;
+package services;
 
 import entities.Opportunity;
 import entities.Room;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.List;
 
 public interface IRoomService {
 
     public int numOfFreeRooms();
 
-    public ArrayList<Room> getFreeRooms();
+    public List<Room> getFreeRooms();
 
-    public ArrayList<Room> getFreeRoomsOnDate(Date date);
+    public List<Room> getFreeRoomsOnDate(Date date);
 
     public String getRoomDetails(int roomId);
 

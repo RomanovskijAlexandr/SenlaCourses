@@ -3,9 +3,9 @@ package handlers;
 import entities.Client;
 import entities.Opportunity;
 import entities.Room;
+import entities.RoomHistory;
 import org.apache.log4j.Logger;
 
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -48,7 +48,6 @@ public class StringHandler {
     public Opportunity getOpportunityFromString(String object) {
         Opportunity opportunity = new Opportunity();
         int j = 0;
-        DateFormat dateFormat = new SimpleDateFormat();
         for (String str : object.split(" ")) {
             if (j == 0)
                 opportunity.setName(str);
@@ -60,12 +59,29 @@ public class StringHandler {
         return opportunity;
     }
 
+    public RoomHistory getRoomHistoryFromString(String object) {
+        RoomHistory roomHistory = new RoomHistory();
+        int j = 0;
+        for (String str : object.split(" ")) {
+            if (j == 0)
+                roomHistory.setClientId(Integer.parseInt(str));
+            if (j == 1)
+                roomHistory.setRoomId(Integer.parseInt(str));
+            if (j == 2)
+                roomHistory.setDateEviction(parseDate(str, "yyyy-MM-dd"));
+            if (j == 3)
+                roomHistory.setDateOfSettle(parseDate(str, "yyyy-MM-dd"));
+            j++;
+        }
+        return roomHistory;
+    }
+
     public Date parseDate(String date, String format) {
         SimpleDateFormat formatter = new SimpleDateFormat(format);
         try {
             return formatter.parse(date);
         } catch (ParseException e) {
-            log.info("Parse exception in ",e);
+            log.info("Parse exception in ", e);
         }
         return null;
     }

@@ -1,23 +1,15 @@
 package entities;
 
-import api.IOpportunity;
-
-import static repositories.OpportunityRepository.lastIdOpportunities;
-
-public class Opportunity extends Entity implements IOpportunity {
+public class Opportunity extends Entity {
     private String name;
     private Integer price;
 
     public Opportunity(String name, Integer price) {
         this.name = name;
         this.price = price;
-        setId(generateId(lastIdOpportunities));
-        lastIdOpportunities++;
     }
 
     public Opportunity() {
-        setId(generateId(lastIdOpportunities));
-        lastIdOpportunities++;
     }
 
     public String getName() {

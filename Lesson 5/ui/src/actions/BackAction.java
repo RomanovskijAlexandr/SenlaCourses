@@ -1,6 +1,6 @@
 package actions;
 
-import api.IAction;
+import action.IAction;
 import controller.MenuController;
 
 public class BackAction implements IAction {

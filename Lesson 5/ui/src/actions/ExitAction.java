@@ -1,6 +1,6 @@
 package actions;
 
-import api.IAction;
+import action.IAction;
 import facade.Hotel;
 
 public class ExitAction implements IAction {

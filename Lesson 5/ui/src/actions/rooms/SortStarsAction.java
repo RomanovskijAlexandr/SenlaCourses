@@ -1,6 +1,6 @@
 package actions.rooms;
 
-import api.IAction;
+import action.IAction;
 import facade.Hotel;
 
 public class SortStarsAction implements IAction {
