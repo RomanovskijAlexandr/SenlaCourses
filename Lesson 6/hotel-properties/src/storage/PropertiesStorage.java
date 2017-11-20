@@ -11,7 +11,7 @@ public class PropertiesStorage {
     private static PropertiesStorage propertiesStorage;
 
     public static PropertiesStorage getInstance() {
-        if (propertiesStorage == null){
+        if (propertiesStorage == null) {
             propertiesStorage = new PropertiesStorage();
         }
         return propertiesStorage;

@@ -146,9 +146,9 @@ public class RoomService implements IRoomService {
         if (numOfStars != null)
             roomClone.setNumOfStars(numOfStars);
 
-        for (int i = 0; i < roomRepository.findAll().size(); i++){
-            if(roomRepository.findAll().get(i).getId()==roomClone.getId()) {
-                roomRepository.findAll().set(i,roomClone);
+        for (int i = 0; i < roomRepository.findAll().size(); i++) {
+            if (roomRepository.findAll().get(i).getId() == roomClone.getId()) {
+                roomRepository.findAll().set(i, roomClone);
             }
         }
     }

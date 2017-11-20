@@ -307,7 +307,7 @@ public class Hotel implements IHotel {
     }
 
     @Override
-    public void updateRoom(Integer roomId, Integer price, Integer capacity, Boolean free, Boolean repair, Integer numOfStars){
+    public void updateRoom(Integer roomId, Integer price, Integer capacity, Boolean free, Boolean repair, Integer numOfStars) {
         try {
             Room room = roomService.findById(roomId);
             roomService.updateRoom(room, price, capacity, free, repair, numOfStars, propertiesStorage.getProperties().getProperty("changeStatus"));
@@ -317,32 +317,62 @@ public class Hotel implements IHotel {
     }
 
     @Override
-    public void exportClientsCSV(){
+    public void exportClientsCSV() {
         new CsvWriter().writeEntitiesCSV(getClientService().findAll(), propertiesStorage.getProperties().getProperty("inputClientsCSV"));
     }
 
     @Override
-    public void exportRoomsCSV(){
+    public void exportRoomsCSV() {
         new CsvWriter().writeEntitiesCSV(getRoomService().findAll(), propertiesStorage.getProperties().getProperty("inputRoomsCSV"));
     }
 
     @Override
-    public void exportOpportunitiesCSV(){
+    public void exportOpportunitiesCSV() {
         new CsvWriter().writeEntitiesCSV(getOpportunityService().findAll(), propertiesStorage.getProperties().getProperty("inputOpportunitiesCSV"));
     }
 
     @Override
-    public void importClientsCSV(){
-        new CsvReader().readClientsCSV(propertiesStorage.getProperties().getProperty("inputClientsCSV"));
+    public void importClientsCSV() {
+        List<Client> importList = new CsvReader().readClientsCSV(propertiesStorage.getProperties().getProperty("inputClientsCSV"));
+        for (int i = 0; i < getClientService().findAll().size(); i++) {
+            for (int j = 0; j < importList.size(); j++) {
+                if (importList.get(j).getId() == getClientService().findAll().get(i).getId()) {
+                    importList.remove(j);
+                }
+            }
+        }
+        if (importList.size() != 0) {
+            getClientService().findAll().addAll(importList);
+        }
     }
 
     @Override
-    public void importRoomsCSV(){
-        new CsvReader().readRoomsCSV(propertiesStorage.getProperties().getProperty("inputRoomsCSV"));
+    public void importRoomsCSV() {
+        List<Room> importList = new CsvReader().readRoomsCSV(propertiesStorage.getProperties().getProperty("inputRoomsCSV"));
+        for (int i = 0; i < getRoomService().findAll().size(); i++) {
+            for (int j = 0; j < importList.size(); j++) {
+                if (importList.get(j).getId() == getRoomService().findAll().get(i).getId()) {
+                    importList.remove(j);
+                }
+            }
+        }
+        if (importList.size() != 0) {
+            getRoomService().findAll().addAll(importList);
+        }
     }
 
     @Override
-    public void importOpportunitiesCSV(){
-        new CsvReader().readOpportunityCSV(propertiesStorage.getProperties().getProperty("inputOpportunitiesCSV"));
+    public void importOpportunitiesCSV() {
+        List<Opportunity> importList = new CsvReader().readOpportunityCSV(propertiesStorage.getProperties().getProperty("inputOpportunitiesCSV"));
+        for (int i = 0; i < getOpportunityService().findAll().size(); i++) {
+            for (int j = 0; j < importList.size(); j++) {
+                if (importList.get(j).getId() == getOpportunityService().findAll().get(i).getId()) {
+                    importList.remove(j);
+                }
+            }
+        }
+        if (importList.size() != 0) {
+            getOpportunityService().findAll().addAll(importList);
+        }
     }
 }

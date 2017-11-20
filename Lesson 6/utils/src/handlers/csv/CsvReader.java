@@ -17,7 +17,7 @@ public class CsvReader {
 
     private static final Logger log = Logger.getLogger(Reader.class.getName());
 
-    public List<Client> readClientsCSV(String path){
+    public List<Client> readClientsCSV(String path) {
         List<Client> clients = null;
         try {
             CSVReader reader = new CSVReader(new FileReader(path));
@@ -30,7 +30,7 @@ public class CsvReader {
         return clients;
     }
 
-    public List<Room> readRoomsCSV(String path){
+    public List<Room> readRoomsCSV(String path) {
         List<Room> rooms = null;
         try {
             CSVReader reader = new CSVReader(new FileReader(path));
@@ -43,8 +43,8 @@ public class CsvReader {
         return rooms;
     }
 
-    public List<Opportunity> readOpportunityCSV(String path){
-        List<Opportunity> opportunities= null;
+    public List<Opportunity> readOpportunityCSV(String path) {
+        List<Opportunity> opportunities = null;
         try {
             CSVReader reader = new CSVReader(new FileReader(path));
             HeaderColumnNameMappingStrategy<Opportunity> opportunityStrategy = new HeaderColumnNameMappingStrategy<Opportunity>();

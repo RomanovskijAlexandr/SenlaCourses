@@ -11,7 +11,7 @@ public class Reader {
 
     private static final Logger log = Logger.getLogger(Reader.class.getName());
 
-    public List<? extends Entity> readEntitiesFromFile(String path){
+    public List<? extends Entity> readEntitiesFromFile(String path) {
         FileInputStream fis = null;
         List<? extends Entity> entities = null;
         try {

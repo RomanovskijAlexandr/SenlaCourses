@@ -11,13 +11,13 @@ public class Writer {
 
     private static final Logger log = Logger.getLogger(Writer.class.getName());
 
-    public void writeEntities(List<? extends Entity> entities, String path){
+    public void writeEntities(List<? extends Entity> entities, String path) {
         FileOutputStream fos = null;
         try {
             fos = new FileOutputStream(path);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(entities);
-        }  catch (Exception e) {
+        } catch (Exception e) {
             log.info(e);
         }
 
