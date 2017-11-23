@@ -14,6 +14,8 @@ public class OpportunityRepository implements IRepository {
 
     private PropertiesStorage propertiesStorage;
 
+    private String path = null;
+
     private static OpportunityRepository opportunityRepository;
 
     public static OpportunityRepository getInstance() {
@@ -25,7 +27,14 @@ public class OpportunityRepository implements IRepository {
 
     private OpportunityRepository() {
         propertiesStorage = PropertiesStorage.getInstance();
-        opportunities = (List<Opportunity>) new Reader().readEntitiesFromFile(propertiesStorage.getProperties().getProperty("inputOpportunities"));
+        if(path==null)
+            path = propertiesStorage.getProperties().getProperty("inputOpportunities");
+        opportunities = (List<Opportunity>) new Reader().readEntitiesFromFile(path);
+    }
+
+    @Override
+    public void setPath(String path) {
+        this.path = path;
     }
 
     public List<Opportunity> getOpportunities() {

@@ -1,7 +1,6 @@
 package builder;
 
 import actions.BackAction;
-import actions.ExitAction;
 import actions.clients.*;
 import actions.opportunities.*;
 import actions.rooms.*;
@@ -37,7 +36,6 @@ public class Builder {
 
         MenuItem exitItem = new MenuItem();
         exitItem.setTitle(" Exit");
-        exitItem.setAction(new ExitAction());
 
         mainMenuItems.add(clientItem);
         mainMenuItems.add(roomItem);
@@ -120,7 +118,7 @@ public class Builder {
 
         MenuItem updateRoom = new MenuItem();
         updateRoom.setTitle(" Update room");
-        updateRoom.setAction(new UpdateRoomAction());
+        updateRoom.setAction(new CloneRoomAction());
 
         MenuItem printerRoom = new MenuItem();
         printerRoom.setTitle(" Print rooms");

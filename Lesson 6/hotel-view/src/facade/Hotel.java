@@ -6,6 +6,7 @@ import comparators.opportunities.PriceComparator;
 import comparators.rooms.CapacityComparator;
 import comparators.rooms.StarsComparator;
 import entities.Client;
+import entities.Entity;
 import entities.Opportunity;
 import entities.Room;
 import handlers.csv.CsvReader;
@@ -307,10 +308,32 @@ public class Hotel implements IHotel {
     }
 
     @Override
-    public void updateRoom(Integer roomId, Integer price, Integer capacity, Boolean free, Boolean repair, Integer numOfStars) {
+    public void saveClone(Integer roomId, Integer number){
         try {
-            Room room = roomService.findById(roomId);
-            roomService.updateRoom(room, price, capacity, free, repair, numOfStars, propertiesStorage.getProperties().getProperty("changeStatus"));
+            Room room = roomService.findById(roomId).clone();
+            room.setNumber(number);
+            roomService.save(room);
+        } catch (CloneNotSupportedException e) {
+            log.info(e);
+        }
+    }
+
+    @Override
+    public void updateCloneRoom(Integer roomId, Integer number, Integer price, Integer capacity, Boolean free, Boolean repair, Integer numOfStars) {
+        try {
+            Room room = roomService.findById(roomId).clone();
+            roomService.updateRoom(room, number, price, capacity, free, repair, numOfStars, propertiesStorage.getProperties().getProperty("changeStatus"));
+        } catch (CloneNotSupportedException e) {
+            log.info(e);
+        }
+    }
+
+    public void changePaths(String clientPath, String roomPath, String opportunityPath, String roomHistoryPath) {
+        try {
+            getClientService().setPath(clientPath);
+            getRoomService().setPath(roomPath);
+            getOpportunityService().setPath(opportunityPath);
+            getRoomHistoryService().setPath(roomHistoryPath);
         } catch (Exception e) {
             log.info(e);
         }
@@ -337,12 +360,13 @@ public class Hotel implements IHotel {
         for (int i = 0; i < getClientService().findAll().size(); i++) {
             for (int j = 0; j < importList.size(); j++) {
                 if (importList.get(j).getId() == getClientService().findAll().get(i).getId()) {
-                    importList.remove(j);
+                    getClientService().findAll().set(i, importList.get(j));
+                }else {
+                    if(!checkId(importList.get(j).getId(), getClientService().findAll())){
+                        getClientService().save(importList.get(j));
+                    }
                 }
             }
-        }
-        if (importList.size() != 0) {
-            getClientService().findAll().addAll(importList);
         }
     }
 
@@ -352,12 +376,13 @@ public class Hotel implements IHotel {
         for (int i = 0; i < getRoomService().findAll().size(); i++) {
             for (int j = 0; j < importList.size(); j++) {
                 if (importList.get(j).getId() == getRoomService().findAll().get(i).getId()) {
-                    importList.remove(j);
+                    getRoomService().findAll().set(i, importList.get(j));
+                }else {
+                    if(!checkId(importList.get(j).getId(), getRoomService().findAll())){
+                        getRoomService().save(importList.get(j));
+                    }
                 }
             }
-        }
-        if (importList.size() != 0) {
-            getRoomService().findAll().addAll(importList);
         }
     }
 
@@ -367,12 +392,26 @@ public class Hotel implements IHotel {
         for (int i = 0; i < getOpportunityService().findAll().size(); i++) {
             for (int j = 0; j < importList.size(); j++) {
                 if (importList.get(j).getId() == getOpportunityService().findAll().get(i).getId()) {
-                    importList.remove(j);
+                    getOpportunityService().findAll().set(i, importList.get(j));
+                }else {
+                    if(!checkId(importList.get(j).getId(), getOpportunityService().findAll())){
+                        getOpportunityService().save(importList.get(j));
+                    }
                 }
             }
         }
-        if (importList.size() != 0) {
-            getOpportunityService().findAll().addAll(importList);
+    }
+
+    public Boolean checkId(Integer id, List<? extends Entity> entities){
+        Boolean flag = false;
+
+        for (int i = 0; i<entities.size(); i++){
+            if(entities.get(i).getId() == id){
+                flag=true;
+                break;
+            }
         }
+
+        return flag;
     }
 }

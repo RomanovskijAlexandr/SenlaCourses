@@ -62,6 +62,10 @@ public class ClientService implements IClientService {
 
     //ClientRepository
 
+    public void setPath(String path){
+        clientRepository.setPath(path);
+    }
+
     public Client findById(int id) {
         return clientRepository.findById(id);
     }

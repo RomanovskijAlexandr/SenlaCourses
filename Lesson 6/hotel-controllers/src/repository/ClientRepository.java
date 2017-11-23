@@ -16,6 +16,8 @@ public class ClientRepository implements IRepository {
 
     private static ClientRepository clientRepository;
 
+    private String path = null;
+
     public static ClientRepository getInstance() {
         if (clientRepository == null) {
             clientRepository = new ClientRepository();
@@ -25,7 +27,14 @@ public class ClientRepository implements IRepository {
 
     private ClientRepository() {
         propertiesStorage = PropertiesStorage.getInstance();
-        clients = (List<Client>) new Reader().readEntitiesFromFile(propertiesStorage.getProperties().getProperty("inputClients"));
+        if(path==null)
+            path = propertiesStorage.getProperties().getProperty("inputClients");
+        clients = (List<Client>) new Reader().readEntitiesFromFile(path);
+    }
+
+    @Override
+    public void setPath(String path) {
+        this.path = path;
     }
 
     public List<Client> getClients() {

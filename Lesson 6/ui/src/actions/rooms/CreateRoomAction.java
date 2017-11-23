@@ -12,9 +12,8 @@ public class CreateRoomAction implements IAction {
     private static final Logger log = Logger.getLogger(Hotel.class.getName());
 
     @Override
-    public void execute() {
+    public void execute(Scanner scanner) {
         try {
-            Scanner scanner = new Scanner(System.in);
             Hotel hotel = Hotel.getInstance();
             System.out.println("Input room's nunmber: ");
             Integer number = scanner.nextInt();
@@ -24,13 +23,10 @@ public class CreateRoomAction implements IAction {
             Integer capacity = scanner.nextInt();
             System.out.println("Input room's stars: ");
             Integer numOfStars = scanner.nextInt();
-
             System.out.println("Input room's date of eviction (format: yyyy-MM-dd) : ");
-            Scanner scanner1 = new Scanner(System.in);
-            Date dateOfEviction = new StringHandler().parseDate(scanner1.nextLine(), "yyyy-MM-dd");
-
+            Date dateOfEviction = new StringHandler().parseDate(scanner.next(), "yyyy-MM-dd");
             System.out.println("Input room's date of settle (format: yyyy-MM-dd) : ");
-            Date dateOfSettle = new StringHandler().parseDate(scanner1.nextLine(), "yyyy-MM-dd");
+            Date dateOfSettle = new StringHandler().parseDate(scanner.next(), "yyyy-MM-dd");
             hotel.createRoom(number, price, capacity, numOfStars, dateOfEviction, dateOfSettle);
             System.out.println("success");
         } catch (Exception e) {

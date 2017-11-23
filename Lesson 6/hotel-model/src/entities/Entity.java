@@ -3,7 +3,7 @@ package entities;
 import java.io.Serializable;
 
 public abstract class Entity implements Serializable {
-    transient private int id;
+    private int id;
 
     public int generateId(int lastId) {
         return lastId;

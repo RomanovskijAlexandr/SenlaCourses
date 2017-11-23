@@ -1,6 +1,7 @@
 package entities;
 
 import com.opencsv.bean.CsvBindByName;
+import com.opencsv.bean.CsvDate;
 
 import java.util.Date;
 
@@ -11,9 +12,11 @@ public class RoomHistory extends Entity {
     @CsvBindByName(column = "room's id", required = true)
     private Integer roomId;
 
-    @CsvBindByName(column = "date of eviction", required = true)
+    @CsvBindByName(column = "date of eviction")
+    @CsvDate("dd-MM-yyyy")
     private Date dateEviction;
-    @CsvBindByName(column = "date of settle", required = true)
+    @CsvBindByName(column = "date of settle")
+    @CsvDate("dd-MM-yyyy")
     private Date dateOfSettle;
 
     public RoomHistory(Integer clientId, Integer roomId, Date dateEviction, Date dateOfSettle) {

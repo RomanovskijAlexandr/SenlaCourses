@@ -1,6 +1,7 @@
 package entities;
 
 import com.opencsv.bean.CsvBindByName;
+import com.opencsv.bean.CsvDate;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -19,9 +20,11 @@ public class Room extends Entity implements IRoom {
     private Integer capacity;
     @CsvBindByName(column = "number of stars", required = true)
     private Integer numOfStars;
-    @CsvBindByName(column = "date of eviction", required = true)
+    @CsvBindByName(column = "date of eviction")
+    @CsvDate("dd-MM-yyyy")
     private Date dateEviction;
-    @CsvBindByName(column = "date of settle", required = true)
+    @CsvBindByName(column = "date of settle")
+    @CsvDate("dd-MM-yyyy")
     private Date dateOfSettle;
     transient private ArrayList<Opportunity> opportunities;
 

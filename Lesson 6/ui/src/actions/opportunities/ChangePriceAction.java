@@ -10,9 +10,8 @@ public class ChangePriceAction implements IAction {
     private static final Logger log = Logger.getLogger(Hotel.class.getName());
 
     @Override
-    public void execute() {
+    public void execute(Scanner scanner) {
         try {
-            Scanner scanner = new Scanner(System.in);
             Hotel hotel = Hotel.getInstance();
             System.out.println("Input opportunity's id: ");
             Integer opId = scanner.nextInt();

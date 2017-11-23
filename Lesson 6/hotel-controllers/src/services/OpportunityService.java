@@ -33,6 +33,10 @@ public class OpportunityService implements IOpportunityService {
 
     //OpportunityRepository
 
+    public void setPath(String path){
+        opportunityRepository.setPath(path);
+    }
+
     public Opportunity findById(int id) {
         return (Opportunity) opportunityRepository.findById(id);
     }

@@ -1,5 +1,6 @@
 package controller;
 
+import actions.ExitAction;
 import builder.Builder;
 import navigator.Navigator;
 
@@ -20,9 +21,13 @@ public class MenuController {
         while (flag) {
             navigator.printMenu();
             Integer index = scanner.nextInt();
-            navigator.navigate(index - 1);
+            if (index != 0)
+                navigator.navigate(index - 1, scanner);
+            else {
+                new ExitAction().execute(scanner);
+                flag = false;
+            }
         }
-
         scanner.close();
     }
 }

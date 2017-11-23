@@ -58,7 +58,9 @@ public interface IHotel {
 
     public void saveEntities();
 
-    public void updateRoom(Integer roomId, Integer price, Integer capacity, Boolean free, Boolean repair, Integer numOfStars);
+    public void saveClone(Integer roomId, Integer number);
+
+    public void updateCloneRoom(Integer roomId, Integer number, Integer price, Integer capacity, Boolean free, Boolean repair, Integer numOfStars);
 
     public void exportClientsCSV();
 

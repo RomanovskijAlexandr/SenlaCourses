@@ -10,12 +10,11 @@ public class CreateClientAction implements IAction {
     private static final Logger log = Logger.getLogger(Hotel.class.getName());
 
     @Override
-    public void execute() {
+    public void execute(Scanner scanner) {
         try {
-            Scanner scanner = new Scanner(System.in);
             Hotel hotel = Hotel.getInstance();
             System.out.println("Input client's name: ");
-            hotel.createClient(scanner.nextLine());
+            hotel.createClient(scanner.next());
             System.out.println("success");
         } catch (Exception e) {
             log.info(e);

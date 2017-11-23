@@ -130,27 +130,33 @@ public class RoomService implements IRoomService {
         return clients;
     }
 
-    public void updateRoom(Room room, Integer price, Integer capacity, Boolean free, Boolean repair, Integer numOfStars, String status) throws CloneNotSupportedException {
+    public void updateRoom(Room room, Integer number, Integer price, Integer capacity, Boolean free, Boolean repair, Integer numOfStars, String status) throws CloneNotSupportedException {
 
-        Room roomClone = room.clone();
+        room.setNumber(number);
         if (price != null)
-            roomClone.setPrice(price);
-        if (capacity != null)
-            roomClone.setCapacity(capacity);
-        if (free != null && status != "no")
-            roomClone.setFree(free);
-        else System.out.println("You can't change free status");
-        if (repair != null && status != "no")
-            roomClone.setFree(repair);
-        else System.out.println("You can't change repair status");
-        if (numOfStars != null)
-            roomClone.setNumOfStars(numOfStars);
+            room.setPrice(price);
 
-        for (int i = 0; i < roomRepository.findAll().size(); i++) {
-            if (roomRepository.findAll().get(i).getId() == roomClone.getId()) {
-                roomRepository.findAll().set(i, roomClone);
-            }
-        }
+        if (capacity != null)
+            room.setCapacity(capacity);
+
+        if (free != null && status != "no")
+            room.setFree(free);
+        else
+            System.out.println("You can't change free status");
+
+        if (repair != null && status != "no")
+            room.setFree(repair);
+        else
+            System.out.println("You can't change repair status");
+
+        if (numOfStars != null)
+            room.setNumOfStars(numOfStars);
+
+        save(room);
+    }
+
+    public void setPath(String path){
+        roomRepository.setPath(path);
     }
 
     public Room findById(int id) {

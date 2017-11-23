@@ -26,7 +26,14 @@ public class RoomHistoryRepository implements IRepository {
 
     private RoomHistoryRepository() {
         propertiesStorage = PropertiesStorage.getInstance();
+        if(path==null)
+            path = propertiesStorage.getProperties().getProperty("inputRoomHistories");
         roomHistories = (List<RoomHistory>) new Reader().readEntitiesFromFile(propertiesStorage.getProperties().getProperty("inputRoomHistories"));
+    }
+
+    @Override
+    public void setPath(String path) {
+        this.path = path;
     }
 
     public List<RoomHistory> getRoomHistories() {

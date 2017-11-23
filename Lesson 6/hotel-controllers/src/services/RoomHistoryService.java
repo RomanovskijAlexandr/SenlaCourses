@@ -22,6 +22,10 @@ public class RoomHistoryService {
 
     //RoomHistoryRepository
 
+    public void setPath(String path){
+        roomHistoryRepository.setPath(path);
+    }
+
     public RoomHistory findById(int id) {
 
         return (RoomHistory) roomHistoryRepository.findById(id);

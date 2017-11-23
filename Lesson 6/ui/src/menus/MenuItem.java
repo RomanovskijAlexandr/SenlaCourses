@@ -2,6 +2,8 @@ package menus;
 
 import action.IAction;
 
+import java.util.Scanner;
+
 public class MenuItem {
     private String title;
     private IAction action;
@@ -31,8 +33,8 @@ public class MenuItem {
         this.nextMenu = nextMenu;
     }
 
-    public void doAction() {
-        action.execute();
+    public void doAction(Scanner scanner) {
+        action.execute(scanner);
     }
 
     @Override

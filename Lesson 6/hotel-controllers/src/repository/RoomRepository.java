@@ -14,6 +14,8 @@ public class RoomRepository implements IRepository {
 
     private PropertiesStorage propertiesStorage;
 
+    private String path = null;
+
     private static RoomRepository roomRepository;
 
     public static RoomRepository getInstance() {
@@ -25,7 +27,9 @@ public class RoomRepository implements IRepository {
 
     private RoomRepository() {
         propertiesStorage = PropertiesStorage.getInstance();
-        rooms = (List<Room>) new Reader().readEntitiesFromFile(propertiesStorage.getProperties().getProperty("inputRooms"));
+        if(path==null)
+            path = propertiesStorage.getProperties().getProperty("inputRooms");
+        rooms = (List<Room>) new Reader().readEntitiesFromFile(path);
     }
 
     public List<Room> getRooms() {
@@ -62,5 +66,10 @@ public class RoomRepository implements IRepository {
     @Override
     public long count() {
         return rooms.size();
+    }
+
+    @Override
+    public void setPath(String path) {
+        this.path = path;
     }
 }

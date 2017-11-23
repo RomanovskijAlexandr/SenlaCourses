@@ -10,10 +10,9 @@ public class OpportunityClientAction implements IAction {
     private static final Logger log = Logger.getLogger(Hotel.class.getName());
 
     @Override
-    public void execute() {
+    public void execute(Scanner scanner) {
         try {
             Hotel hotel = Hotel.getInstance();
-            Scanner scanner = new Scanner(System.in);
             System.out.println("Input client's id: ");
             hotel.moveOutClientFromRoom(scanner.nextInt());
             System.out.println("Success");
