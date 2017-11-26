@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Room extends Entity implements IRoom {
+public class Room extends Entity implements IRoom, Cloneable {
     @CsvBindByName(column = "price", required = true)
     private Integer number;
     @CsvBindByName(column = "price", required = true)
