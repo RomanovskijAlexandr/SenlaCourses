@@ -4,6 +4,7 @@ import entities.Entity;
 import org.apache.log4j.Logger;
 
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.List;
 
@@ -20,6 +21,12 @@ public class Reader {
             entities = (List<? extends Entity>) oin.readObject();
         } catch (Exception e) {
             log.info(e);
+        }finally {
+            try {
+                fis.close();
+            } catch (IOException e) {
+                log.info(e);
+            }
         }
         return entities;
     }

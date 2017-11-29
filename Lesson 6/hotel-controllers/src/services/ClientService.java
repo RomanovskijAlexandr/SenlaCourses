@@ -1,11 +1,13 @@
 package services;
 
 import entities.*;
+import managers.IClientService;
 import repository.ClientRepository;
-import repository.IRepository;
+import storages.IRepository;
 import repository.RoomHistoryRepository;
 import repository.RoomRepository;
 
+import java.io.IOException;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -16,7 +18,7 @@ public class ClientService implements IClientService {
 
     private IRepository roomHistoryRepository = RoomHistoryRepository.getInstance();
 
-    public ClientService() {
+    public ClientService() throws IOException {
     }
 
     public ClientRepository getClientRepository() {
@@ -45,7 +47,7 @@ public class ClientService implements IClientService {
     }
 
     @Override
-    public void settleClientInRoom(int clientId, int roomId, Date dateOfSettle, Date dateEviction) {
+    public void settleClientInRoom(int clientId, int roomId, Date dateOfSettle, Date dateEviction) throws IOException {
         Room room = RoomRepository.getInstance().findById(roomId);
         Client client = clientRepository.findById(clientId);
         if (room.getFree() && !room.getRepair()) {

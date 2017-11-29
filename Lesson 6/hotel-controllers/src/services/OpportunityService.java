@@ -2,9 +2,11 @@ package services;
 
 import entities.Entity;
 import entities.Opportunity;
-import repository.IRepository;
+import managers.IOpportunityService;
+import storages.IRepository;
 import repository.OpportunityRepository;
 
+import java.io.IOException;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -12,7 +14,7 @@ import java.util.List;
 public class OpportunityService implements IOpportunityService {
     private IRepository opportunityRepository = OpportunityRepository.getInstance();
 
-    public OpportunityService() {
+    public OpportunityService() throws IOException {
     }
 
     public OpportunityRepository getOpportunityRepository() {

@@ -2,6 +2,7 @@ package storage;
 
 import reader.PropertiesReader;
 
+import java.io.IOException;
 import java.util.Properties;
 
 public class PropertiesStorage {
@@ -10,14 +11,14 @@ public class PropertiesStorage {
 
     private static PropertiesStorage propertiesStorage;
 
-    public static PropertiesStorage getInstance() {
+    public static PropertiesStorage getInstance() throws IOException {
         if (propertiesStorage == null) {
             propertiesStorage = new PropertiesStorage();
         }
         return propertiesStorage;
     }
 
-    private PropertiesStorage() {
+    private PropertiesStorage() throws IOException {
         this.propertyReader = new PropertiesReader();
         this.properties = this.propertyReader.getProperties();
 

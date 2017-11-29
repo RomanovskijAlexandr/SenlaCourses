@@ -2,6 +2,7 @@ package navigator;
 
 import menus.Menu;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Navigator {
@@ -24,7 +25,7 @@ public class Navigator {
         }
     }
 
-    public void navigate(Integer index, Scanner scanner) {
+    public void navigate(Integer index, Scanner scanner) throws IOException {
         if (currentMenu.getMenuItems().get(index) != null) {
             if (currentMenu.getMenuItems().get(index).getAction() != null)
                 currentMenu.getMenuItems().get(index).doAction(scanner);

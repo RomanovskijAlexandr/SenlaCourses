@@ -3,8 +3,10 @@ package repository;
 import entities.Client;
 import entities.Entity;
 import handlers.serialize.Reader;
+import storages.IRepository;
 import storage.PropertiesStorage;
 
+import java.io.IOException;
 import java.util.List;
 
 public class ClientRepository implements IRepository {
@@ -18,14 +20,14 @@ public class ClientRepository implements IRepository {
 
     private String path = null;
 
-    public static ClientRepository getInstance() {
+    public static ClientRepository getInstance() throws IOException {
         if (clientRepository == null) {
             clientRepository = new ClientRepository();
         }
         return clientRepository;
     }
 
-    private ClientRepository() {
+    private ClientRepository() throws IOException {
         propertiesStorage = PropertiesStorage.getInstance();
         if(path==null)
             path = propertiesStorage.getProperties().getProperty("inputClients");

@@ -12,6 +12,7 @@ import entities.Room;
 import handlers.csv.CsvReader;
 import handlers.csv.CsvWriter;
 import handlers.serialize.Writer;
+import hotel.IHotel;
 import org.apache.log4j.Logger;
 import repository.RoomRepository;
 import services.ClientService;
@@ -20,6 +21,7 @@ import services.RoomHistoryService;
 import services.RoomService;
 import storage.PropertiesStorage;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -39,14 +41,14 @@ public class Hotel implements IHotel {
 
     private static Hotel hotel;
 
-    public static Hotel getInstance() {
+    public static Hotel getInstance() throws IOException {
         if (hotel == null) {
             hotel = new Hotel();
         }
         return hotel;
     }
 
-    private Hotel() {
+    private Hotel() throws IOException {
         propertiesStorage = PropertiesStorage.getInstance();
         clientService = new ClientService();
         roomService = new RoomService();
@@ -340,17 +342,17 @@ public class Hotel implements IHotel {
     }
 
     @Override
-    public void exportClientsCSV() {
+    public void exportClientsCSV() throws IOException {
         new CsvWriter().writeEntitiesCSV(getClientService().findAll(), propertiesStorage.getProperties().getProperty("inputClientsCSV"));
     }
 
     @Override
-    public void exportRoomsCSV() {
+    public void exportRoomsCSV() throws IOException {
         new CsvWriter().writeEntitiesCSV(getRoomService().findAll(), propertiesStorage.getProperties().getProperty("inputRoomsCSV"));
     }
 
     @Override
-    public void exportOpportunitiesCSV() {
+    public void exportOpportunitiesCSV() throws IOException {
         new CsvWriter().writeEntitiesCSV(getOpportunityService().findAll(), propertiesStorage.getProperties().getProperty("inputOpportunitiesCSV"));
     }
 

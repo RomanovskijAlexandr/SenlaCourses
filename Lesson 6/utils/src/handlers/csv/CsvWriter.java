@@ -18,7 +18,7 @@ public class CsvWriter {
 
     private static final Logger log = Logger.getLogger(Reader.class.getName());
 
-    public void writeEntitiesCSV(List<? extends Entity> entities, String path) {
+    public void writeEntitiesCSV(List<? extends Entity> entities, String path) throws IOException {
         Writer writer = null;
         StatefulBeanToCsv beanToCsv = null;
         try {
@@ -32,6 +32,8 @@ public class CsvWriter {
             log.info(e);
         } catch (CsvDataTypeMismatchException e) {
             log.info(e);
+        }finally {
+            writer.close();
         }
 
     }

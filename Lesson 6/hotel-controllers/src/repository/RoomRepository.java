@@ -3,8 +3,10 @@ package repository;
 import entities.Entity;
 import entities.Room;
 import handlers.serialize.Reader;
+import storages.IRepository;
 import storage.PropertiesStorage;
 
+import java.io.IOException;
 import java.util.List;
 
 public class RoomRepository implements IRepository {
@@ -18,14 +20,14 @@ public class RoomRepository implements IRepository {
 
     private static RoomRepository roomRepository;
 
-    public static RoomRepository getInstance() {
+    public static RoomRepository getInstance() throws IOException {
         if (roomRepository == null) {
             roomRepository = new RoomRepository();
         }
         return roomRepository;
     }
 
-    private RoomRepository() {
+    private RoomRepository() throws IOException {
         propertiesStorage = PropertiesStorage.getInstance();
         if(path==null)
             path = propertiesStorage.getProperties().getProperty("inputRooms");

@@ -9,7 +9,6 @@ import entities.Room;
 import handlers.serialize.Reader;
 import org.apache.log4j.Logger;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.List;
 
@@ -19,12 +18,11 @@ public class CsvReader {
 
     public List<Client> readClientsCSV(String path) {
         List<Client> clients = null;
-        try {
-            CSVReader reader = new CSVReader(new FileReader(path));
+        try (CSVReader reader  = new CSVReader(new FileReader(path))) {
             HeaderColumnNameMappingStrategy<Client> clientStrategy = new HeaderColumnNameMappingStrategy<Client>();
             CsvToBean<Client> csvToBean = new CsvToBean<Client>();
             clients = csvToBean.parse(clientStrategy, reader);
-        } catch (FileNotFoundException e) {
+        } catch (java.io.IOException e) {
             log.info(e);
         }
         return clients;
@@ -32,12 +30,11 @@ public class CsvReader {
 
     public List<Room> readRoomsCSV(String path) {
         List<Room> rooms = null;
-        try {
-            CSVReader reader = new CSVReader(new FileReader(path));
+        try (CSVReader reader = new CSVReader(new FileReader(path))) {
             HeaderColumnNameMappingStrategy<Room> roomStrategy = new HeaderColumnNameMappingStrategy<Room>();
             CsvToBean<Room> csvToBean = new CsvToBean<Room>();
             rooms = csvToBean.parse(roomStrategy, reader);
-        } catch (FileNotFoundException e) {
+        } catch (java.io.IOException e) {
             log.info(e);
         }
         return rooms;
@@ -45,12 +42,11 @@ public class CsvReader {
 
     public List<Opportunity> readOpportunityCSV(String path) {
         List<Opportunity> opportunities = null;
-        try {
-            CSVReader reader = new CSVReader(new FileReader(path));
+        try (CSVReader reader = new CSVReader(new FileReader(path))) {
             HeaderColumnNameMappingStrategy<Opportunity> opportunityStrategy = new HeaderColumnNameMappingStrategy<Opportunity>();
             CsvToBean<Opportunity> csvToBean = new CsvToBean<Opportunity>();
             opportunities = csvToBean.parse(opportunityStrategy, reader);
-        } catch (FileNotFoundException e) {
+        } catch (java.io.IOException e) {
             log.info(e);
         }
         return opportunities;

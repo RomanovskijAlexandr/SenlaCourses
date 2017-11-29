@@ -1,5 +1,6 @@
 package entities;
 
+import beans.IRoom;
 import com.opencsv.bean.CsvBindByName;
 import com.opencsv.bean.CsvDate;
 
@@ -28,6 +29,9 @@ public class Room extends Entity implements IRoom, Cloneable {
     private Date dateOfSettle;
     transient private ArrayList<Opportunity> opportunities;
 
+    public Room() {
+    }
+
     public Room(Integer number, Integer price, Integer capacity, Integer numOfStars, Date dateEviction, Date dateOfSettle) {
         this.number = number;
         this.price = price;
@@ -36,9 +40,6 @@ public class Room extends Entity implements IRoom, Cloneable {
         this.dateEviction = dateEviction;
         this.dateOfSettle = dateOfSettle;
         opportunities = new ArrayList<>();
-    }
-
-    public Room() {
     }
 
     public Integer getNumber() {
@@ -114,15 +115,6 @@ public class Room extends Entity implements IRoom, Cloneable {
     }
 
     @Override
-    public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("Room number is: ").append(this.number).append("   Room price is: ").append(this.price).
-                append("   Room capacity is: ").append(this.capacity).append("   Room is free: ").
-                append(this.free).append("   Room has stars: ").append(this.numOfStars);
-        return stringBuilder.toString();
-    }
-
-    @Override
     public String getStringForPrintInFile() {
         String pattern = "yyyy-MM-dd";
         String dateEv = new SimpleDateFormat(pattern).format(dateEviction);
@@ -136,7 +128,20 @@ public class Room extends Entity implements IRoom, Cloneable {
         return sb.toString();
     }
 
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Room number is: ").append(this.number).append("   Room price is: ").append(this.price).
+                append("   Room capacity is: ").append(this.capacity).append("   Room is free: ").
+                append(this.free).append("   Room has stars: ").append(this.numOfStars);
+        return stringBuilder.toString();
+    }
+
     public Room clone() throws CloneNotSupportedException {
-        return (Room) super.clone();
+        Room room = (Room) super.clone();
+        Integer id = null;
+        room.setId(id);
+        room.setNumber(0);
+        return room;
     }
 }

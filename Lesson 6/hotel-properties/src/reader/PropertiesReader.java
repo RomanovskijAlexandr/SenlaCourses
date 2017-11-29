@@ -23,11 +23,13 @@ public class PropertiesReader {
         }
     }
 
-    public Properties getProperties() {
+    public Properties getProperties() throws IOException {
         try {
             properties.load(inputStream);
         } catch (IOException e) {
             log.info(e);
+        }finally {
+            inputStream.close();
         }
         return properties;
     }

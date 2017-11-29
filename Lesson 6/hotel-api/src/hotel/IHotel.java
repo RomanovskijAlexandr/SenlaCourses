@@ -1,9 +1,10 @@
-package facade;
+package hotel;
 
 import entities.Client;
 import entities.Opportunity;
 import entities.Room;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
@@ -62,11 +63,11 @@ public interface IHotel {
 
     public void updateCloneRoom(Integer roomId, Integer number, Integer price, Integer capacity, Boolean free, Boolean repair, Integer numOfStars);
 
-    public void exportClientsCSV();
+    public void exportClientsCSV() throws IOException;
 
-    public void exportRoomsCSV();
+    public void exportRoomsCSV() throws IOException;
 
-    void exportOpportunitiesCSV();
+    void exportOpportunitiesCSV() throws IOException;
 
     void importClientsCSV();
 

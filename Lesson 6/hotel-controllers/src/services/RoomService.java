@@ -5,11 +5,13 @@ import entities.Client;
 import entities.Entity;
 import entities.Opportunity;
 import entities.Room;
+import managers.IRoomService;
 import repository.ClientRepository;
-import repository.IRepository;
+import storages.IRepository;
 import repository.RoomHistoryRepository;
 import repository.RoomRepository;
 
+import java.io.IOException;
 import java.util.*;
 
 public class RoomService implements IRoomService {
@@ -20,7 +22,7 @@ public class RoomService implements IRoomService {
 
     private IRepository clientRepository = ClientRepository.getInstance();
 
-    public RoomService() {
+    public RoomService() throws IOException {
     }
 
     public RoomRepository getRoomRepository() {
@@ -103,7 +105,7 @@ public class RoomService implements IRoomService {
         Collections.sort(roomRepository.getRooms(), comparator);
     }
 
-    public List<Client> getLastSortClients(int roomId) {
+    public List<Client> getLastSortClients(int roomId) throws IOException {
         List<Integer> clientsID = new ArrayList<>();
         List<Client> clients = new ArrayList<>();
         RoomHistoryRepository roomHistoryRepository = (RoomHistoryRepository) this.roomHistoryRepository;

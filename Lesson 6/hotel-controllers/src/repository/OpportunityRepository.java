@@ -3,8 +3,10 @@ package repository;
 import entities.Entity;
 import entities.Opportunity;
 import handlers.serialize.Reader;
+import storages.IRepository;
 import storage.PropertiesStorage;
 
+import java.io.IOException;
 import java.util.List;
 
 public class OpportunityRepository implements IRepository {
@@ -18,14 +20,14 @@ public class OpportunityRepository implements IRepository {
 
     private static OpportunityRepository opportunityRepository;
 
-    public static OpportunityRepository getInstance() {
+    public static OpportunityRepository getInstance() throws IOException {
         if (opportunityRepository == null) {
             opportunityRepository = new OpportunityRepository();
         }
         return opportunityRepository;
     }
 
-    private OpportunityRepository() {
+    private OpportunityRepository() throws IOException {
         propertiesStorage = PropertiesStorage.getInstance();
         if(path==null)
             path = propertiesStorage.getProperties().getProperty("inputOpportunities");

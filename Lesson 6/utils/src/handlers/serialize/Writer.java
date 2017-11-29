@@ -4,6 +4,7 @@ import entities.Entity;
 import org.apache.log4j.Logger;
 
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.List;
 
@@ -19,6 +20,12 @@ public class Writer {
             oos.writeObject(entities);
         } catch (Exception e) {
             log.info(e);
+        }finally {
+            try {
+                fos.close();
+            } catch (IOException e) {
+                log.info(e);
+            }
         }
 
     }

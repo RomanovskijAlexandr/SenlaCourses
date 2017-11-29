@@ -1,7 +1,8 @@
 package menus;
 
-import action.IAction;
+import uiactions.IAction;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class MenuItem {
@@ -33,7 +34,7 @@ public class MenuItem {
         this.nextMenu = nextMenu;
     }
 
-    public void doAction(Scanner scanner) {
+    public void doAction(Scanner scanner) throws IOException {
         action.execute(scanner);
     }
 

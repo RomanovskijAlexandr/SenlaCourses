@@ -1,6 +1,6 @@
 package actions.clients;
 
-import action.IAction;
+import uiactions.IAction;
 import facade.Hotel;
 import org.apache.log4j.Logger;
 

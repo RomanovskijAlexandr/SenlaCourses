@@ -2,16 +2,17 @@ package services;
 
 import entities.Entity;
 import entities.RoomHistory;
-import repository.IRepository;
+import storages.IRepository;
 import repository.RoomHistoryRepository;
 
+import java.io.IOException;
 import java.util.List;
 
 public class RoomHistoryService {
     private IRepository roomHistoryRepository;
 
 
-    public RoomHistoryService() {
+    public RoomHistoryService() throws IOException {
         this.roomHistoryRepository = RoomHistoryRepository.getInstance();
     }
 

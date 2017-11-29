@@ -3,8 +3,10 @@ package repository;
 import entities.Entity;
 import entities.RoomHistory;
 import handlers.serialize.Reader;
+import storages.IRepository;
 import storage.PropertiesStorage;
 
+import java.io.IOException;
 import java.util.List;
 
 public class RoomHistoryRepository implements IRepository {
@@ -17,14 +19,14 @@ public class RoomHistoryRepository implements IRepository {
 
     private String path = null;
 
-    public static RoomHistoryRepository getInstance() {
+    public static RoomHistoryRepository getInstance() throws IOException {
         if (roomHistoryRepository == null) {
             roomHistoryRepository = new RoomHistoryRepository();
         }
         return roomHistoryRepository;
     }
 
-    private RoomHistoryRepository() {
+    private RoomHistoryRepository() throws IOException {
         propertiesStorage = PropertiesStorage.getInstance();
         if(path==null)
             path = propertiesStorage.getProperties().getProperty("inputRoomHistories");

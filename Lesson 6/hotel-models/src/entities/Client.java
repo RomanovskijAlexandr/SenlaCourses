@@ -1,5 +1,6 @@
 package entities;
 
+import beans.IClient;
 import com.opencsv.bean.CsvBindByName;
 
 public class Client extends Entity implements IClient {

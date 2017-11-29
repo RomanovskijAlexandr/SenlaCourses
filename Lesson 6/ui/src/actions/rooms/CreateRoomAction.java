@@ -1,6 +1,6 @@
 package actions.rooms;
 
-import action.IAction;
+import uiactions.IAction;
 import facade.Hotel;
 import handlers.StringHandler;
 import org.apache.log4j.Logger;

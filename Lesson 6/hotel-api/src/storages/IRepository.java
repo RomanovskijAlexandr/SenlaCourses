@@ -1,4 +1,4 @@
-package repository;
+package storages;
 
 import entities.Entity;
 

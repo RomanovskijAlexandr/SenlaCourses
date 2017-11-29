@@ -1,6 +1,6 @@
 package actions.opportunities;
 
-import action.IAction;
+import uiactions.IAction;
 import facade.Hotel;
 import org.apache.log4j.Logger;
 
